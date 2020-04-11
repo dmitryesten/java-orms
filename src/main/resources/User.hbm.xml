@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="hibernate.model.User" table="USER">
+
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="sequence">
+                <param name="sequence_name">SEQ_ID</param>
+            </generator>
+        </id>
+
+        <property name="nickname" type="string">
+            <column name="NICKNAME" length="20" not-null="true" unique="true" />
+        </property>
+
+        <property name="password" type="string">
+            <column name="PASSWORD" length="20" not-null="true" />
+        </property>
+
+        <property name="age" type="int">
+            <column name="AGE" />
+        </property>
+
+        <property name="gender">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">hibernate.model.Gender</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
+    </class>
+</hibernate-mapping>
